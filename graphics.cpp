@@ -91,12 +91,12 @@ int main(void)
 			do {
 				boardx = rand() % 3;
 				boardy = rand() % 3;
-			} while (!game_logic.set_o(boardx, boardy));
+			} while (game_logic.set_o(boardx, boardy) == false);
 
 			// convert board position to screen coordiantes
 
-			int screenX = boardx * 213 + 106;
-			int screenY = boardy * 125 + 62;
+			int screenX = boardy * 213 + 106;
+			int screenY = boardx * 125 + 62;
 
 			draw_o(screenX, screenY);
 			turn = 0;
