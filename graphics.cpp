@@ -83,8 +83,9 @@ int main(void)
 		game_message(gameover, game_logic);
 		if (draw)
 		{
-
-			set_graphics_x_o(posX, posY, game_logic, turn);
+			if (turn == 0) {
+				set_graphics_x_o(posX, posY, game_logic, turn);
+			}
 
 			draw = false;
 		}
