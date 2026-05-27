@@ -81,28 +81,27 @@ int main(void)
 		}
 		draw_board();
 		game_message(gameover, game_logic);
-		if (draw)
+		if (draw && turn == 0)
 		{
-			if (turn == 0) {
-				set_graphics_x_o(posX, posY, game_logic, turn);
-			}
-			else if (turn == 1) {
-				int computer_x = rand();
-				int computer_y = rand() % 375;
-				int computer_x_index = computer_x / 213;
-				int computer_y_index = computer_y / 125;
-				set_graphics_x_o(computer_x, computer_y, game_logic, turn);
-				do {
-					computer_x = rand();
-					computer_y = rand() % 375;
-					computer_x_index = computer_x / 213;
-					computer_y_index = computer_y / 125;
-					set_graphics_x_o(computer_x, computer_y, game_logic, turn);
-				} while (game_logic.set_o(computer_x_index, computer_y_index) == false);
-			}
-
+			set_graphics_x_o(posX, posY, game_logic, turn);
 			draw = false;
 		}
+		if (turn == 1) {
+			int boardx, boardy;
+			do {
+				boardx = rand() % 3;
+				boardy = rand() % 3;
+			} while (!game_logic.set_o(boardx, boardy));
+
+			// convert board position to screen coordiantes
+
+			int screenX = boardx * 213 + 106;
+			int screenY = boardy * 125 + 62;
+
+			draw_o(screenX, screenY);
+			turn = 0;
+		}
+
 		al_flip_display();
 	}
 	al_rest(5.0);
