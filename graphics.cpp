@@ -86,6 +86,9 @@ int main(void)
 			if (turn == 0) {
 				set_graphics_x_o(posX, posY, game_logic, turn);
 			}
+			else if (turn == 1) {
+				set_graphics_x_o(rand(), rand() % 375, game_logic, turn);
+			}
 
 			draw = false;
 		}
