@@ -87,7 +87,18 @@ int main(void)
 				set_graphics_x_o(posX, posY, game_logic, turn);
 			}
 			else if (turn == 1) {
-				set_graphics_x_o(rand(), rand() % 375, game_logic, turn);
+				int computer_x = rand();
+				int computer_y = rand() % 375;
+				int computer_x_index = computer_x / 213;
+				int computer_y_index = computer_y / 125;
+				set_graphics_x_o(computer_x, computer_y, game_logic, turn);
+				do {
+					computer_x = rand();
+					computer_y = rand() % 375;
+					computer_x_index = computer_x / 213;
+					computer_y_index = computer_y / 125;
+					set_graphics_x_o(computer_x, computer_y, game_logic, turn);
+				} while (game_logic.set_o(computer_x_index, computer_y_index) == false);
 			}
 
 			draw = false;
